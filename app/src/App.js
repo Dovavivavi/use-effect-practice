@@ -6,18 +6,12 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
 function App() {
+  //states
   const [countries, setCountries] = useState([])
   const [showCountries, setShowCountries] = useState(true)
   const [loading, setLoading] = useState(true)
   const [sort, setSort] = useState('asc')
   const [searchInput, setSearchInput] = useState('')
-
-  // fetch('https://restcountries.com/v3.1/all')
-  //   .then(data => data.json())
-  //   .then(countriesData => {
-  //     console.log(countriesData)
-  //     setCountries(countriesData)
-  //   })
 
   useEffect(() => {
     fetch('https://restcountries.com/v3.1/all')
@@ -28,10 +22,6 @@ function App() {
       setLoading(false)
     })
   },[])
-
-  // useEffect(() => {
-  //   setTimeout(() => setLoading(false), 5000)
-  // },[])
 
   return (
     <>
