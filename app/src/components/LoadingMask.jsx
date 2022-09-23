@@ -1,3 +1,4 @@
+/*'rfce'-commanddal le lehet gyártani*/
 import React from 'react'
 
 function LoadingMask() {
