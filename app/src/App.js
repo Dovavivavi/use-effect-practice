@@ -13,6 +13,7 @@ function App() {
   const [loading, setLoading] = useState(true)
   const [sort, setSort] = useState('asc')
   const [searchInput, setSearchInput] = useState('')
+  const [showSubregion, setShowSubregion] = useState(true)
 
   useEffect(() => {
     /*sima fetch-elés*/
@@ -40,6 +41,10 @@ function App() {
           <Button variant='contained' onClick={() => {
             setShowCountries(!showCountries)
           }}>show/hide countries</Button>
+
+          <Button variant='contained' onClick={() => {
+            setShowSubregion(!showSubregion)
+          }}>show/hide subregion</Button>
 
           <TextField label="name" variant="outlined" type="text" value={searchInput} onChange={(event) => {
             setSearchInput(event.target.value)
