@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect, useState } from 'react';
 import './App.css';
 import Countries from './components/Countries';
@@ -14,6 +15,8 @@ function App() {
   const [sort, setSort] = useState('asc')
   const [searchInput, setSearchInput] = useState('')
   const [showSubregion, setShowSubregion] = useState(true)
+  //backend fetches state
+  const [data, setData] = React.useState(null);
 
   useEffect(() => {
     /*sima fetch-elés*/
@@ -26,6 +29,13 @@ function App() {
     })
   },[])
 
+  React.useEffect(() => {
+    /*fetchel backendről*/
+    fetch("/api")
+      .then((res) => res.json())
+      .then((data) => setData(data.message));
+  }, []);
+
   return (
     <>
     {loading 
@@ -33,6 +43,8 @@ function App() {
         <LoadingMask /> 
       : 
         <div className="App">
+          {/* megjeleníti a fetchelt szart */}
+          <p>{!data ? "Loading..." : data}</p>
           <Button variant='contained'/*MUI-s style-ra kell a variant*/ onClick={() => {
             setCountries([...countries].sort((a, b) => sort === 'asc' ? a.population - b.population : b.population - a.population))
             setSort(sort === 'asc' ? 'desc' : 'asc')
